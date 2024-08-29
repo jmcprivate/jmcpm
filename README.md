@@ -3,6 +3,8 @@
 ## Step 1: Make the File Executable
 
 If your .sh file isn't already executable, you'll need to give it execute permissions. You can do this with the chmod command:
+
+
 `chmod +x install.sh`
 
 
