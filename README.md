@@ -1,4 +1,5 @@
 # Install.sh installation guide
+This is ONLY for myself. To install a basic environment for development. 
 
 ## Step 1: Make the File Executable
 
