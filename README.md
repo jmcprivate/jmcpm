@@ -1,7 +1,12 @@
 # Install.sh installation guide
 This is ONLY for myself. To install a basic environment for development. 
 
-## Step 1: Make the File Executable
+## Step 1: Download this repo:
+
+`wget https://github.com/jmcprivate/jmcpm/blob/main/install.sh`
+
+
+## Step 2: Make the File Executable
 
 If your .sh file isn't already executable, you'll need to give it execute permissions. You can do this with the chmod command:
 
@@ -9,7 +14,7 @@ If your .sh file isn't already executable, you'll need to give it execute permis
 `chmod +x install.sh`
 
 
-## Step 2: Run the Script
+## Step 3: Run the Script
 
 Now you can run the script by typing:
 
