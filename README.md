@@ -5,6 +5,10 @@ This is ONLY for myself. To install a basic environment for development.
 
 `wget https://github.com/jmcprivate/jmcpm/blob/main/install.sh`
 
+or 
+
+`curl -O https://github.com/jmcprivate/jmcpm/blob/main/install.sh`
+
 
 ## Step 2: Make the File Executable
 
