@@ -3,11 +3,15 @@ This is ONLY for myself. To install a basic environment for development.
 
 ## Step 1: Download this repo:
 
-`wget https://github.com/jmcprivate/jmcpm/blob/main/install.sh`
+`wget https://github.com/jmcprivate/jmcpm/archive/refs/heads/main.zip -O jmcpm.zip`
 
-or 
+Unzip:
 
-`curl -O https://github.com/jmcprivate/jmcpm/blob/main/install.sh`
+`unzip jmcpm.zip`
+
+Go into the directory:
+
+`cd jmcpm-main`
 
 
 ## Step 2: Make the File Executable
@@ -26,6 +30,5 @@ Now you can run the script by typing:
 
 If the script requires sudo (root) privileges, you can run it with:
 
-`sudo ./filename.sh`
+`sudo ./install.sh`
 
-You'll be prompted to enter your password if you use sudo.
