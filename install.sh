@@ -36,6 +36,10 @@ echo -e "#!/bin/bash\n\necho \"This month's pay day is 27th of September!\" > $T
 chmod +x "$CREATE_TEXT_SCRIPT"
 
 # Set up cron jobs to hourly output
+# Check current crontab
+crontab -l
+# Add a new cron job
+echo "0 * * * * /home/parallels/cron-task/create_text.sh" | crontab -
 (crontab -l ; echo "0 * * * * /home/parallels/cron-task/create_text.sh") | crontab -
 (crontab -l ; echo "0 * * * * cat /home/parallels/cron-task/cron-message.txt >> /dev/pts/1") | crontab -
 (crontab -l ; echo "0 * * * * echo \"This month's pay day is 27th September\" > /dev/pts/1 2>&1") | crontab -
