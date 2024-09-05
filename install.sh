@@ -18,8 +18,11 @@ echo 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main' 
 sudo apt update
 sudo apt install -y code
 
-# Create the CRON task in Linux to output when I'm getting paid for the month (hourly outout)
-# Define the paths
+# Ensure cron service is enabled and starts on boot
+sudo systemctl enable cron
+sudo systemctl start cron
+
+# Create the CRON task in Linux to output when I'm getting paid for the month (hourly output)
 USER_DIR="$HOME/cron-task"
 TEXT_FILE_PATH="$USER_DIR/cron-message.txt"
 CREATE_TEXT_SCRIPT="$USER_DIR/create_text.sh"
@@ -33,11 +36,14 @@ echo -e "#!/bin/bash\n\necho \"This month's pay day is 27th of September!\" > $T
 # Make sure the create_text.sh script is executable
 chmod +x "$CREATE_TEXT_SCRIPT"
 
-# Add the create_text.sh script to the cron job to run every minute
-(crontab -l 2>/dev/null; echo "* * * * * $CREATE_TEXT_SCRIPT") | crontab -
+# Set up cron job to run every hour
+(crontab -l 2>/dev/null; echo "0 * * * * $CREATE_TEXT_SCRIPT") | crontab -
 
-# Add the cron job to display the text file content
-(crontab -l 2>/dev/null; echo "* * * * * cat $TEXT_FILE_PATH | wall") | crontab -
+# Add a cron job to display the text file content every hour
+(crontab -l 2>/dev/null; echo "0 * * * * cat $TEXT_FILE_PATH | wall") | crontab -
+
+# Optional: Add cron job to run the script once at reboot
+(crontab -l 2>/dev/null; echo "@reboot $CREATE_TEXT_SCRIPT") | crontab -
 
 echo "Cron jobs set up successfully."
 
