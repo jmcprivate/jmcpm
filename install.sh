@@ -18,6 +18,30 @@ echo 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main' 
 sudo apt update
 sudo apt install -y code
 
+# Create the CRON task in Linux to output when I'm getting paid for the month (hourly outout)
+# Define the paths
+USER_DIR="$HOME/cron-task"
+TEXT_FILE_PATH="$USER_DIR/cron-message.txt"
+CREATE_TEXT_SCRIPT="$USER_DIR/create_text.sh"
+
+# Create the directory
+mkdir -p "$USER_DIR"
+
+# Create the text file creation script
+echo -e "#!/bin/bash\n\necho \"This month's pay day is 27th of September!\" > $TEXT_FILE_PATH" > "$CREATE_TEXT_SCRIPT"
+
+# Make sure the create_text.sh script is executable
+chmod +x "$CREATE_TEXT_SCRIPT"
+
+# Add the create_text.sh script to the cron job to run every minute
+(crontab -l 2>/dev/null; echo "* * * * * $CREATE_TEXT_SCRIPT") | crontab -
+
+# Add the cron job to display the text file content
+(crontab -l 2>/dev/null; echo "* * * * * cat $TEXT_FILE_PATH | wall") | crontab -
+
+echo "Cron jobs set up successfully."
+
+
 # Install Python and pip
 sudo apt install -y python3 python3-pip
 
