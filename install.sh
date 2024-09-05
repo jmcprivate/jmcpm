@@ -35,7 +35,6 @@ chmod +x "$CREATE_TEXT_SCRIPT"
 
 echo "Cron jobs set up successfully."
 
-
 # Install Python and pip
 sudo apt install -y python3 python3-pip
 
@@ -48,6 +47,22 @@ sudo apt install -y thefuck speedtest-cli htop stress iftop tcpdump
 # Configure 'thefuck' (optional)
 echo 'eval $(thefuck --alias)' >> ~/.bashrc
 source ~/.bashrc
+
+# Install Docker
+# Add Docker's official GPG key and set up the stable repository
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update package index and install Docker
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+# Start and enable Docker service
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# Add the current user to the Docker group (for non-root Docker usage)
+sudo usermod -aG docker $USER
 
 # Clean up
 sudo apt autoremove -y
@@ -63,5 +78,7 @@ htop --version
 stress --version
 iftop --version
 tcpdump --version
+docker --version
+docker-compose --version
 
 echo "Development environment setup is complete!"
