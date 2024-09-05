@@ -98,4 +98,18 @@ tcpdump --version
 docker --version
 docker-compose --version
 
+echo "CLI tools installed. Now installing software"
+#!/bin/bash
+
+# Download the latest version of Visual Studio Code
+wget -O code-latest.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
+
+# Install the downloaded .deb package
+sudo apt install -y ./code-latest.deb
+
+# Remove the installer file
+rm code-latest.deb
+
+
+
 echo "Development environment setup is complete!"
