@@ -130,13 +130,11 @@ echo "CLI tools installed. Now installing software"
 #!/bin/bash
 
 # Download the latest version of Visual Studio Code
-wget -O code-latest.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
-
-# Install the downloaded .deb package
-sudo apt install -y ./code-latest.deb
-
-# Remove the installer file
-rm code-latest.deb
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EB3E94ADBE1229CF
+sudo add-apt-repository -y "deb [arch=arm] https://packages.microsoft.com/repos/vscode stable main"
+sudo apt -y install code
+sudo apt -y upgrade
+sudo apt -y dist-upgrade
 
 
 
