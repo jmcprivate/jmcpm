@@ -77,6 +77,15 @@ sudo add-apt-repository -y "deb [arch=arm] https://packages.microsoft.com/repos/
 sudo apt -y install code
 sudo apt -y upgrade
 sudo apt -y dist-upgrade
+# IF the above doesn't work
+sudo apt-get install wget gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" |sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+rm -f packages.microsoft.gpg
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code # or code-insiders
 
 # Update and upgrade the system
 sudo apt update && sudo apt upgrade -y
