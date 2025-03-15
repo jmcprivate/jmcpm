@@ -79,6 +79,7 @@ iftop --version
 tcpdump --version
 docker --version
 docker-compose --version
+aws --version
 kubectl version --client
 
 echo "CLI tools installed. Now installing software"
