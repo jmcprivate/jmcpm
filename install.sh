@@ -52,13 +52,17 @@ sudo apt autoremove -y
 sudo apt clean
 
 # AWS CLI / kubectl 
+# Install AWS CLI
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
-curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.32.0/2024-12-20/bin/linux/arm64/kubectl
-chmod +x ./kubectl
-mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
-echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+rm -rf awscliv2.zip aws
+
+sudo apt install -y ca-certificates curl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+rm kubectl
+
 
 
 
@@ -75,6 +79,7 @@ iftop --version
 tcpdump --version
 docker --version
 docker-compose --version
+kubectl version --client
 
 echo "CLI tools installed. Now installing software"
 # Install Vivaldi 
