@@ -52,6 +52,8 @@ sudo usermod -aG docker $USER
 # Clean up
 sudo apt autoremove -y
 sudo apt clean
+# Download Terminal profiles to customise the linux terminal 
+git clone https://github.com/pixegami/terminal-profile
 
 # AWS CLI / kubectl 
 # Install AWS CLI
