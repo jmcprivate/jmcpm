@@ -28,6 +28,8 @@ sudo apt install -y thefuck speedtest-cli htop stress iftop tcpdump
 # Configure 'thefuck' (optional)
 echo 'eval $(thefuck --alias)' >> ~/.bashrc
 source ~/.bashrc
+# Install neofetch
+sudo apt install neofetch -y
 
 # Install Docker
 # Add Docker's official GPG key and set up the stable repository
